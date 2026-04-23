@@ -33,7 +33,10 @@ namespace Lab07
         }
         public Bao(string line)
         {
-
+            string[] ss = line.Trim().Split(',');
+            this.GiaTien = float.Parse(ss[3]);
+            this.Ten = ss[1];
+            this.NhaXuatBan = ss[2];
         }
 
         public Bao(string ten, string nhaXuatBan, float giaTien)

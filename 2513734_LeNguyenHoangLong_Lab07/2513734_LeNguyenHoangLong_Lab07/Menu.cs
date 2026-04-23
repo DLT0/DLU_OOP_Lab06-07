@@ -48,7 +48,7 @@ namespace Lab07
                 case ChucNang.ThoatChuongTrinh:
                     break;
                 case ChucNang.DocDSTuFile:
-                    ql.DocFile();
+                    ql.DocFile("dsanpham.txt");
                     Console.WriteLine(ql);
                     break;
                 case ChucNang.XuatDS:

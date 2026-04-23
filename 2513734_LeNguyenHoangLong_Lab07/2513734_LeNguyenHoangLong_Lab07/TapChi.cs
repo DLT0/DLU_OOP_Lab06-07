@@ -32,9 +32,13 @@ namespace Lab07
         {
 
         }
-        public TapChi(string line)
+        public TapChi(string line) //Tap chi, Ca si, Ha Noi, 40, Quan Thanh Xuan - Ha Noi
         {
-
+            string[] ss = line.Trim().Split(',');
+            this.GiaTien = float.Parse(ss[3]);
+            this.Ten = ss[1];
+            this.NhaXuatBan = ss[2];
+            this.diaChi = ss[4];
         }
 
         public TapChi(string ten, string nhaXuatBan, float giaTien, string diaChi)

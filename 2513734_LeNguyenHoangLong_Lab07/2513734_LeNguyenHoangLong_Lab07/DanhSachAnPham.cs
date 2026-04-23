@@ -21,6 +21,7 @@ namespace Lab07
             get { return this.collection[index]; }
             set { this.collection[index] = value; }
         }
+
         public int Count
         {
             get { return this.collection.Count; }
@@ -39,20 +40,47 @@ namespace Lab07
             }
         }
         */
-        public void DocFile()
+        public bool DocFile(string path)
         {
+
+            /*
+                        Them(new Sach("Lap Trinh HDT", "Giao duc", 100f, 60));
+                        Them(new TapChi("May bay", "TPHCM", 100f, "Quan 10 - TP HCM"));
+                        Them(new TapChi("Nguoi mau tap 1", "TPHCM", 100f, "Quan 1 - TP HCM"));
+                        Them(new Bao("Nong dan", "Thanh nien", 50f));
+                        Them(new TapChi("Ca si", "Ha Noi", 40f, "Quan Thanh Xuan - Ha Noi "));
+                        Them(new Bao("Nhan dan tap 1", "Ha Noi", 20f));
+                        Them(new Bao("Lao dong", "Ha Noi", 10f));
+                        Them(new Sach("Cau truc DL&TG1", "Giao duc", 150f, 100));
+                        Them(new Sach("Bao tri may tinh", "Da Nang", 130f, 200));
+            */
+            if (!File.Exists(path))
+            {
+                Console.WriteLine("File khong ton tai!");
+                return false;
+            }
             this.collection.Clear();
+            string[] lines = File.ReadAllLines(path);
+            IAnPham ap = null;
+            foreach (var line in lines) //"MT*221*Sony 1*4/2/1999"
+            {
+                switch (line.Split(',')[0])
+                {
+                    case "Sach":
+                        Them(new Sach(line));
+                        break;
 
-            Them(new Sach("Lap Trinh HDT", "Giao duc", 100f, 60));
-            Them(new TapChi("May bay", "TPHCM", 100f, "Quan 10 - TP HCM"));
-            Them(new TapChi("Nguoi mau tap 1", "TPHCM", 100f, "Quan 1 - TP HCM"));
-            Them(new Bao("Nong dan", "Thanh nien", 50f));
-            Them(new TapChi("Ca si", "Ha Noi", 40f, "Quan Thanh Xuan - Ha Noi "));
-            Them(new Bao("Nhan dan tap 1", "Ha Noi", 20f));
-            Them(new Bao("Lao dong", "Ha Noi", 10f));
-            Them(new Sach("Cau truc DL&TG1", "Giao duc", 150f, 100));
-            Them(new Sach("Bao tri may tinh", "Da Nang", 130f, 200));
+                    case "Tap chi":
+                        Them(new TapChi(line));
+                        break;
 
+                    case "Bao":
+                        Them(new Bao(line));
+                        break;
+                }
+            }
+            Console.WriteLine("Doc file thanh cong!");
+            return true;
         }
         public override string ToString()
 
@@ -262,7 +290,6 @@ namespace Lab07
             IAnPham them = Nhap1AnPham();
             this.collection.Insert(vt, them);
         }
-
 
     }
 }
